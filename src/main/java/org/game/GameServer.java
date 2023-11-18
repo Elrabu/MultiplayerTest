@@ -5,7 +5,7 @@ import java.net.*;
 
 public class GameServer {
 
-    private ServerSocket ss;
+    private ServerSocket servers;
     private int numPlayers;
     private int maxPlayers;
     private Socket p1Socket;
@@ -29,7 +29,7 @@ public class GameServer {
         p2y = 400;
 
         try {
-            ss = new ServerSocket(45371);
+            servers = new ServerSocket(45371);
         } catch (IOException ex) {
             System.out.println("IOException from Game Server constructor!");
         }
@@ -39,7 +39,7 @@ public class GameServer {
         try {
             System.out.println("Waiting for conection...");
             while (numPlayers < maxPlayers){
-                Socket s = ss.accept();
+                Socket s = servers.accept();
                 DataInputStream in = new DataInputStream(s.getInputStream());
                 DataOutputStream out = new DataOutputStream(s.getOutputStream());
 
